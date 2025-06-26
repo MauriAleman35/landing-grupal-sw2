@@ -33,6 +33,6 @@ export class HeaderComponent {
   }
 
   goToPlatform() {
-    window.open('http://localhost:4200', '_blank'); // Cambia por tu URL real cuando esté en producción
+    window.open('https://sw2-grupal-frontend.vercel.app/', '_blank'); // Cambia por tu URL real cuando esté en producción
   }
 }
