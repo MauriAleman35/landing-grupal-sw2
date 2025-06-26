@@ -1,0 +1,39 @@
+.tab-link {
+  color: #a58d65;
+  font-weight: 500;
+  font-size: 1.06rem;
+  transition: color 0.18s;
+  padding: 0 0.5rem;
+  border-radius: 0.45rem;
+  line-height: 1.6;
+}
+.tab-link.tab-active,
+.tab-link:hover {
+  color: #d4a017;
+  background: transparent;
+}
+
+.platform-btn-minimal {
+  border: 1.5px solid #d4a017;
+  background: transparent;
+  color: #d4a017;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.22rem 1.1rem;
+  border-radius: 1.2rem;
+  line-height: 1.4;
+  box-shadow: none;
+  transition: 
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s;
+  outline: none;
+  margin-left: 0.5rem;
+}
+
+.platform-btn-minimal:hover,
+.platform-btn-minimal:focus {
+  background: #fff4de;
+  color: #a07918;
+  border-color: #a07918;
+}

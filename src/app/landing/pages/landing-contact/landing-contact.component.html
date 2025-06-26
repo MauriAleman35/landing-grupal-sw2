@@ -1,0 +1,57 @@
+<section class="py-10 flex justify-center items-center min-h-screen bg-gray-50">
+  <form [formGroup]="contactForm" (ngSubmit)="submitForm()"
+    class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full space-y-6 border border-gray-100"
+    autocomplete="off"
+  >
+    <h2 class="text-2xl font-bold mb-4 text-gray-900">Envíanos un mensaje</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nombre Completo</mat-label>
+        <input matInput formControlName="name" [disabled]="isSubmitting">
+        <mat-error *ngIf="contactForm.get('name')?.hasError('required') && contactForm.get('name')?.touched">
+          Nombre es requerido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Correo Electrónico</mat-label>
+        <input matInput formControlName="email" [disabled]="isSubmitting" type="email">
+        <mat-error *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched">
+          Email es requerido
+        </mat-error>
+        <mat-error *ngIf="contactForm.get('email')?.hasError('email') && contactForm.get('email')?.touched">
+          Email no válido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Facultad</mat-label>
+        <mat-select formControlName="faculty" [disabled]="isSubmitting">
+          <mat-option *ngFor="let fac of facultades" [value]="fac.label">{{ fac.label }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="contactForm.get('faculty')?.hasError('required') && contactForm.get('faculty')?.touched">
+          Facultad es requerida
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Teléfono (opcional)</mat-label>
+        <input matInput formControlName="phone" [disabled]="isSubmitting">
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Mensaje</mat-label>
+      <textarea matInput formControlName="message" rows="5" [disabled]="isSubmitting"></textarea>
+      <mat-error *ngIf="contactForm.get('message')?.hasError('required') && contactForm.get('message')?.touched">
+        Mensaje es requerido
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary"
+      [disabled]="contactForm.invalid || isSubmitting"
+      class="w-full bg-[#ffaa00] hover:bg-[#ffbb23] text-lg py-3 rounded-lg font-bold flex items-center justify-center transition-all"
+    >
+      <mat-icon class="mr-2">send</mat-icon>
+      <span *ngIf="!isSubmitting">Enviar Mensaje</span>
+      <span *ngIf="isSubmitting">Enviando...</span>
+    </button>
+    <div *ngIf="enviado" class="bg-green-100 text-green-700 rounded px-4 py-2 text-center animate-fade-in-up">¡Mensaje enviado exitosamente!</div>
+    <div *ngIf="error" class="bg-red-100 text-red-700 rounded px-4 py-2 text-center animate-fade-in-up">{{error}}</div>
+  </form>
+</section>
